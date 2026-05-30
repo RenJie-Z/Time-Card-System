@@ -57,7 +57,8 @@ Netlify frontend:
 - Build base: `frontend`
 - Build command: `npm ci && npm run build`
 - Publish directory: `frontend/dist`
-- Production env var: `VITE_API_BASE_URL=https://daily-study-checkin-api.onrender.com`
+- Production env var: `VITE_API_BASE_URL=/api`
+- Netlify proxies `/api/*` to `https://daily-study-checkin-api.onrender.com/*` to avoid browser CORS issues.
 
 ## Tests
 
