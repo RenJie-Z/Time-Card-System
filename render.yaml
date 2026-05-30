@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: daily-study-checkin-api
+    runtime: node
+    rootDir: backend
+    plan: starter
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        value: sqlite:////var/data/study_checkin.db
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ALLOWED_ORIGINS
+        value: https://daily-study-checkin.netlify.app
+    disk:
+      name: study-data
+      mountPath: /var/data
+      sizeGB: 1
