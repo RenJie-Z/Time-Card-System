@@ -1,6 +1,6 @@
 # Daily Study Check-in
 
-Vue + Vite frontend and Node.js + Express backend for daily study check-ins. The app supports email/password auth, JWT authorization, SQLite storage, daily tasks, study minutes, notes, and calendar statistics.
+Vue + Vite frontend and Node.js APIs for daily study check-ins. The app supports email/password auth, JWT authorization, daily tasks, study minutes, notes, and calendar statistics.
 
 ## Local Backend
 
@@ -37,28 +37,14 @@ VITE_API_BASE_URL=http://localhost:8000
 
 ## Production Deployment
 
-The production setup uses Netlify for the Vue frontend and Render for the Node.js API.
-
-Render backend:
-
-- Service name: `daily-study-checkin-api`
-- Runtime: Node
-- Root directory: `backend`
-- Build command: `npm ci`
-- Start command: `npm start`
-- Health check: `/health`
-- Persistent disk: `/var/data`
-- `DATABASE_URL=sqlite:////var/data/study_checkin.db`
-- `ALLOWED_ORIGINS=https://daily-study-checkin.netlify.app`
-
-Netlify frontend:
+The production setup uses Netlify for both the Vue frontend and the API. Netlify Functions serve `/api/*`, and Netlify Blobs stores production data.
 
 - Config: `netlify.toml`
 - Build base: `frontend`
 - Build command: `npm ci && npm run build`
 - Publish directory: `frontend/dist`
 - Production env var: `VITE_API_BASE_URL=/api`
-- Netlify proxies `/api/*` to `https://daily-study-checkin-api.onrender.com/*` to avoid browser CORS issues.
+- Function env var: `SECRET_KEY`
 
 ## Tests
 
